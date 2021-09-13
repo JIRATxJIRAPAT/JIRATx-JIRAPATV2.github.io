@@ -13,5 +13,5 @@ def ShowCourse(request, course_code):
     output = get_object_or_404(Course,pk=course_code)
     return render(request,"registers/course_info.html",{
         "Course": output,
-        "Member": Student.member.all()
+        "member": Student.member.all()
     })

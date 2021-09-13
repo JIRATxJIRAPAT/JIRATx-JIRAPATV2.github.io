@@ -19,6 +19,6 @@ class Student(models.Model):
     grade = models.FloatField()
     years = models.PositiveIntegerField()
     enrollment = models.ManyToManyField(Course,blank = True,related_name="member")
-
+    
     def __str__(self):
         return f"{self.student_id}: {self.student_name}"
