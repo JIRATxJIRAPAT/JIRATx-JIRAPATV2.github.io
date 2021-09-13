@@ -1,0 +1,14 @@
+  
+{% extends "registers/layout.html" %}
+
+{% block body %}
+    <h1>Course: {{ Course.course_code }}</h1>
+
+    <ul>
+        <li>Course : {{ Course.course_code }} {{ Course.course_name }}</li>
+        <li>max : {{ Course.max_student }} seats</li>
+        <li>status : {{ Course.status }}</li>
+    </ul>
+    <p><a href= "{% url 'Register:index'%}"> Course_list </a> </p>
+    
+{% endblock %}
