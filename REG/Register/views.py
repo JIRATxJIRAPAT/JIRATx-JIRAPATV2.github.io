@@ -13,9 +13,11 @@ def index(request):
 
 
 def ShowCourse(request, course_code):
-    ShowCourse = get_object_or_404(Course,pk=course_code)
+    x = get_object_or_404(Course,pk=course_code)
     return render(request,"registers/course_info.html",{
-        "Course": ShowCourse,
+        "Course": x,
+        "student":x.enroll.all()
+
     })
 
 """
@@ -29,9 +31,3 @@ def apply(request, course_code):
         reg.enrollment.add(request.user)
     return HttpResponseRedirect(reverse("Register:showcourse", args=(course_code,)))
 """
-def apply(request , course_code):
-    if request.method == "POST":
-        select_subject = Course.objects.get(pk = course_code)
-        student = Student.objects.get(pk = (request.user.id - 1))
-        student.subject.add(select_subject)
-    return HttpResponseRedirect(reverse("Register:ShowCourse"))

@@ -17,7 +17,7 @@ class Course(models.Model):
         return f"{self.course_code} {self.course_name}"
 
 class Student(models.Model):
-    student_id = models.OneToOneField(User, on_delete=models.CASCADE)
+    #student_id = models.OneToOneField(User, on_delete=models.CASCADE)
     student_name = models.CharField(max_length = 50)
     grade = models.FloatField()
     years = models.PositiveIntegerField()
