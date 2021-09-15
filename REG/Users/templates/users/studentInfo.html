@@ -7,7 +7,17 @@
     <ul>
         <li>Username: {{ request.user.username }}</li>
         <li>Email: {{ request.user.email }}</li>
+        <li>subjects: {{ request.user.enrollment }}</li>
     </ul>
+    
+    <a>{{ stu }}</a>
+    {% for i in stu %}
+    <li>
+        {{i}}
+    </li>
+    {% endfor %}
 
+
+    
     <a href="{% url 'Users:logout' %}">Log out</a>
 {% endblock %}

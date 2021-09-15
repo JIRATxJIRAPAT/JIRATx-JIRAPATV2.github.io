@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.contrib import messages
 
 # Create your views here.
-from .models import Course
+from .models import Course,Student
 
 def index(request):
     return render(request,"registers/index.html",{
@@ -13,19 +13,25 @@ def index(request):
 
 
 def ShowCourse(request, course_code):
-    output = get_object_or_404(Course,pk=course_code)
+    ShowCourse = get_object_or_404(Course,pk=course_code)
     return render(request,"registers/course_info.html",{
-        "Course": output,
-        "member": output.enrollment.all()
+        "Course": ShowCourse,
     })
 
-
+"""
 def apply(request, course_code):
     if not request.user.is_authenticated:
         messages.warning(request, "Please Login")
         return HttpResponseRedirect(reverse("Users:login")+f"?next={request.path}")
 
-    showcourse = get_object_or_404(Course, pk=course_code)
-    if request.user not in showcourse.enrollment.all():
-        showcourse.enrollment.add(request.user)
-    return HttpResponseRedirect(reverse("Register:apply", args=(course_code,)))
+    reg = get_object_or_404(Course, pk=course_code)
+    if request.user not in Student.enrollment.all():
+        reg.enrollment.add(request.user)
+    return HttpResponseRedirect(reverse("Register:showcourse", args=(course_code,)))
+"""
+def apply(request , course_code):
+    if request.method == "POST":
+        select_subject = Course.objects.get(pk = course_code)
+        student = Student.objects.get(pk = (request.user.id - 1))
+        student.subject.add(select_subject)
+    return HttpResponseRedirect(reverse("Register:ShowCourse"))

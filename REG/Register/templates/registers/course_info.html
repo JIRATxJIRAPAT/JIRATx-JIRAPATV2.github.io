@@ -9,16 +9,8 @@
         <li>max : {{ Course.max_student }} seats</li>
         <li>status : {{ Course.status }}</li>
     </ul>
-
-    <h2>Registered</h2>
-    <ul>
-        {% for student in Users %}
-        <li>{{student.first_name}} {{student.last_name}}</li>
-        {% empty %}
-        <li>No student</li>
-        {% endfor %}
-    </ul>
-
+    
+    
     <a href="{% url 'Register:apply' Course.course_code %}">Register Now</a>
 
     <br><br>
