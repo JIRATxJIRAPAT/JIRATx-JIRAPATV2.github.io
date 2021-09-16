@@ -25,6 +25,6 @@ def apply(request, course_code):
     if request.method == "POST":
         x = get_object_or_404(Course,pk=course_code)
         student = request.POST["student"]
-        x.enroll.add(student)
+        student.enroll.add(x)
         return HttpResponseRedirect(reverse("Register:ShowCourse", args=(course_code,))
         )

@@ -19,6 +19,7 @@
         {% endfor %}
     </ul>
 
+    
     <h3>Apply</h3>
     <form action="{% url 'Register:apply' x.course_code %}" method="POST">
         {% csrf_token %}
@@ -30,7 +31,6 @@
         </select>
         <input type="submit" value="Add Course">
     </form>
-
     
 
 
