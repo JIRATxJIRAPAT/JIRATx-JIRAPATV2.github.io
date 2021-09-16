@@ -21,7 +21,7 @@
 
     
     <h3>Apply</h3>
-    <form action="{% url 'Register:apply' x.course_code %}" method="POST">
+    <form action="{% url 'Register:apply' Course.course_code %}" method="POST">
         {% csrf_token %}
         <select name="student">
             {% for student in non_enrollment %}
