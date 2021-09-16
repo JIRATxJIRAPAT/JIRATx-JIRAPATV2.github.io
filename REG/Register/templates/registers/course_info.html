@@ -12,15 +12,27 @@
     
     <h2>student</h2>
     <ul>
-        {% for y in enrollment %}
+        {% for y in student %}
         <li>{{ y }}</li>
         {% empty %}
         <li>No passengers</li>
         {% endfor %}
     </ul>
 
+    <h3>Apply</h3>
+    <form action="{% url 'Register:apply' x.course_code %}" method="POST">
+        {% csrf_token %}
+        <select name="student">
+            {% for student in non_enrollment %}
+            <option value="{{student.student_name}}">{{student}}</option>"
+            {% endfor %}
+
+        </select>
+        <input type="submit" value="Add Course">
+    </form>
+
     
-    
+
 
     <br><br>
     <p><a href= "{% url 'Register:index'%}"> Course_list </a> </p>

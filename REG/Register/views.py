@@ -2,9 +2,9 @@ from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
-
-# Create your views here.
 from .models import Course,Student
+# Create your views here.
+
 
 def index(request):
     return render(request,"registers/index.html",{
@@ -16,18 +16,15 @@ def ShowCourse(request, course_code):
     x = get_object_or_404(Course,pk=course_code)
     return render(request,"registers/course_info.html",{
         "Course": x,
-        "student":x.enroll.all()
-
+        "student":x.enroll.all(),
+        "non_enrollment": Student.objects.exclude(enrollment=x)
     })
 
-"""
-def apply(request, course_code):
-    if not request.user.is_authenticated:
-        messages.warning(request, "Please Login")
-        return HttpResponseRedirect(reverse("Users:login")+f"?next={request.path}")
 
-    reg = get_object_or_404(Course, pk=course_code)
-    if request.user not in Student.enrollment.all():
-        reg.enrollment.add(request.user)
-    return HttpResponseRedirect(reverse("Register:showcourse", args=(course_code,)))
-"""
+def apply(request, course_code):
+    if request.method == "POST":
+        x = get_object_or_404(Course,pk=course_code)
+        student = request.POST["student"]
+        x.enroll.add(student)
+        return HttpResponseRedirect(reverse("Register:ShowCourse", args=(course_code,))
+        )

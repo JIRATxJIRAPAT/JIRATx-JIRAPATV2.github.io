@@ -17,11 +17,11 @@ class Course(models.Model):
         return f"{self.course_code} {self.course_name}"
 
 class Student(models.Model):
-    #student_id = models.OneToOneField(User, on_delete=models.CASCADE)
+    student_id = models.OneToOneField(User, on_delete=models.CASCADE)
     student_name = models.CharField(max_length = 50)
     grade = models.FloatField()
     years = models.PositiveIntegerField()
     enrollment = models.ManyToManyField(Course,blank = True,related_name="enroll")
     
     def __str__(self):
-        return f"{self.student_id}: {self.student_name}"
+        return f"{self.student_name}"
