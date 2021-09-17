@@ -3,12 +3,16 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
 from .models import Course
+from django.db.models import Count
+
 # Create your views here.
 
 
 def index(request):
+    
     return render(request,"registers/index.html",{
-        "Course": Course.objects.all()
+        "Course": Course.objects.all(),
+        
     })
 
 
@@ -27,26 +31,21 @@ def apply(request, course_code):
 
     x = get_object_or_404(Course,pk=course_code)
     if request.user not in x.student.all():
-        x.student.add(request.user)
+        if Course.siting != Course.limit_seat:
+            x.student.add(request.user)
+            Course.siting += 1
     return HttpResponseRedirect(reverse("Register:ShowCourse",args=(course_code,)))
         
 
-"""
-def apply(request, course_code):
-    
-    if request.method == "POST":
-        x = get_object_or_404(Course,pk=course_code)
-        student = request.POST["student"]
-        x.enroll.add(student)
-        return HttpResponseRedirect(reverse("Register:ShowCourse", args=(course_code,))
-        )
-"""
+def removeCourse(request , course_code):
 
-"""
-def unapply(request , course_code):
-    if request.method == "POST":
-        select_course = get_object_or_404(Course,pk=course_code)
-        student = request.POST["students"]
-        select_course.enroll.remove(student)
-    return HttpResponseRedirect(reverse("Register:index"))
-"""
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("Users:login"))
+
+    x = get_object_or_404(Course,pk=course_code)
+    if request.user in x.student.all():
+        x.student.remove(request.user)
+        Course.siting -=  1
+    return HttpResponseRedirect(reverse("Register:ShowCourse",args=(course_code,)))
+    
+   

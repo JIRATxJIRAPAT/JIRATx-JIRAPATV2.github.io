@@ -9,12 +9,13 @@ class Course(models.Model):
     course_name = models.CharField(max_length=64)
     semester = models.PositiveIntegerField()
     academic_year = models.PositiveIntegerField()
-    limit = models.PositiveIntegerField()
+    limit_seat = models.PositiveIntegerField()
+    siting = models.PositiveIntegerField()
     status = models.BooleanField()
     student = models.ManyToManyField(User, blank=True,related_name="enroll")
     
     def __str__(self):
-        return f"{self.course_code} {self.course_name}"
+        return f"{self.course_code} {self.course_name} {self.siting}/{self.limit_seat}"
 """
 class Student(models.Model):
     

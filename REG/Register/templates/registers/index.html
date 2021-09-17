@@ -5,7 +5,10 @@
     <h1>Course List</h1>
     <ul>
     {% for x in Course  %}
-        <li><a href="{% url 'Register:ShowCourse' x.course_code %}">{{ x }}</a></li>
+        <li><a href="{% url 'Register:ShowCourse' x.course_code %}">{{ x }} </a></li>
     {% endfor %}
     </ul>
+    
+    <p>{{Course.siting}}</p>
+    
 {% endblock body %} 

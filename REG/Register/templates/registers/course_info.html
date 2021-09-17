@@ -6,8 +6,9 @@
 
     <ul>
         <li>Course : {{ Course.course_code }} {{ Course.course_name }}</li>
-        <li>max : {{ Course.limit }} seats</li>
+        <li>max : {{ Course.limit_seat }} seats</li>
         <li>status : {{ Course.status }}</li>
+        <li>{{Course.siting}}</li>
     </ul>
     
     <h2>student</h2>
@@ -21,6 +22,7 @@
 
 
     <p><a href="{% url 'Register:apply' Course.course_code %}">Apply course</a></h3>
+    <p><a href="{% url 'Register:remove' Course.course_code %}">remove course</a></h3>   
 
 
     <br><br>
