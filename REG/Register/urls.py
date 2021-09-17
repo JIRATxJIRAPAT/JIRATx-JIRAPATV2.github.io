@@ -8,4 +8,5 @@ urlpatterns = [
     path('',views.index,name='index'),
     path('<course_code>',views.ShowCourse,name='ShowCourse'),
     path("<course_code>/apply", views.apply, name="apply"),
+    #path("<course_code>/unapply", views.unapply, name="unapply"),
 ]

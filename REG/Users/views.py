@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from Register.models import Student
+
 from django.shortcuts import get_object_or_404
 
 # Create your views here.
@@ -12,12 +12,9 @@ def index(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("Users:login"))
     
-    return render(request, "Users/studentinfo.html")
+    return render(request, "users/studentinfo.html")
         
     
-
-
-
 def login_view(request):
     if request.method == "POST":
         username = request.POST["username"]
@@ -27,15 +24,14 @@ def login_view(request):
             login(request, user)
             return HttpResponseRedirect(reverse("Users:studentinfo"))
         else:
-            return render(request, "Users/login.html",{
+            return render(request, "users/login.html",{
                 "message": "Invalid Credential."
             })
-
-    return render(request, "Users/login.html")
+    return render(request, "users/login.html")
 
 def logout_view(request):
     logout(request)
 
-    return render(request, "Users/login.html",{
+    return render(request, "users/login.html",{
         "message": "Logged out."
     })

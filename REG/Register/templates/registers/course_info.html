@@ -6,32 +6,21 @@
 
     <ul>
         <li>Course : {{ Course.course_code }} {{ Course.course_name }}</li>
-        <li>max : {{ Course.max_student }} seats</li>
+        <li>max : {{ Course.limit }} seats</li>
         <li>status : {{ Course.status }}</li>
     </ul>
     
     <h2>student</h2>
     <ul>
         {% for y in student %}
-        <li>{{ y }}</li>
+        <li>{{ y.username }}</li>
         {% empty %}
         <li>No passengers</li>
         {% endfor %}
     </ul>
 
-    
-    <h3>Apply</h3>
-    <form action="{% url 'Register:apply' Course.course_code %}" method="POST">
-        {% csrf_token %}
-        <select name="student">
-            {% for student in non_enrollment %}
-            <option value="{{student.id}}">{{student}}</option>"
-            {% endfor %}
 
-        </select>
-        <input type="submit" value="Add Course">
-    </form>
-    
+    <p><a href="{% url 'Register:apply' Course.course_code %}">Apply course</a></h3>
 
 
     <br><br>
