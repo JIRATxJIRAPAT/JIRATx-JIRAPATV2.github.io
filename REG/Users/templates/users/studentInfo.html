@@ -6,17 +6,18 @@
 
     <ul>
         <li>Username: {{ request.user.username }}</li>
-        <li>Email: {{ request.user.email }}</li>
-        <li>subjects: {{ request.user.enrollment }}</li>
+        <li>Email: {{ request.user.email }}
+        
+        <h3>Registered Subjects</h3>
+        
+            {% for x in subject  %}
+                <li>{{ x }}</li>
+            {% endfor %}
+        
     </ul>
     
-    <a>{{ stu }}</a>
-    {% for i in stu %}
-    <li>
-        {{i}}
-    </li>
-    {% endfor %}
-
-
-    <a href="{% url 'Users:logout' %}">Log out</a>
+    <ul>
+        <p><a href="{% url 'Register:index' %}">Enrollment</a></p>
+        <p><a href="{% url 'Users:logout' %}">Log out</a></p>
+    </ul>
 {% endblock %}

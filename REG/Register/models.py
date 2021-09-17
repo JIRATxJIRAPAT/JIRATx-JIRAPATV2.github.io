@@ -15,15 +15,4 @@ class Course(models.Model):
     student = models.ManyToManyField(User, blank=True,related_name="enroll")
     
     def __str__(self):
-        return f"{self.course_code} {self.course_name} {self.siting}/{self.limit_seat}"
-"""
-class Student(models.Model):
-    
-    student_name = models.CharField(max_length = 50)
-    grade = models.FloatField()
-    years = models.PositiveIntegerField()
-    enrollment = models.ManyToManyField(Course,blank = True,related_name="enroll")
-    
-    def __str__(self):
-        return f"{self.student_name}"
-"""
+        return f"{self.course_code} {self.course_name}  "

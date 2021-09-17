@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from Register.models import Course
 
 from django.shortcuts import get_object_or_404
 
@@ -11,8 +12,10 @@ from django.shortcuts import get_object_or_404
 def index(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("Users:login"))
-    
-    return render(request, "users/studentinfo.html")
+    get_subject = request.user.enroll.all()
+    return render(request, "users/studentinfo.html",{
+        "subject":get_subject,
+    })
         
     
 def login_view(request):

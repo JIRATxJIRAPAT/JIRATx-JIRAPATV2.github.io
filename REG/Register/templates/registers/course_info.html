@@ -6,9 +6,8 @@
 
     <ul>
         <li>Course : {{ Course.course_code }} {{ Course.course_name }}</li>
-        <li>max : {{ Course.limit_seat }} seats</li>
-        <li>status : {{ Course.status }}</li>
-        <li>{{Course.siting}}</li>
+        
+        <li>status: {{seat}}/{{Course.limit_seat}} seat</li>
     </ul>
     
     <h2>student</h2>
@@ -22,11 +21,12 @@
 
 
     <p><a href="{% url 'Register:apply' Course.course_code %}">Apply course</a></h3>
-    <p><a href="{% url 'Register:remove' Course.course_code %}">remove course</a></h3>   
+    <p><a href="{% url 'Register:remove' Course.course_code %}">Remove course</a></h3>   
 
 
     <br><br>
-    <p><a href= "{% url 'Register:index'%}"> Course_list </a> </p>
+    <p><a href= "{% url 'Register:index'%}"> select course </a> </p>
+    <p><a href= "{% url 'Users:studentinfo'%}"> return to profile </a> </p>
 
     
 {% endblock %}

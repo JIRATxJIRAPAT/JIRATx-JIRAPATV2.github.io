@@ -18,10 +18,12 @@ def index(request):
 
 def ShowCourse(request, course_code):
     info = get_object_or_404(Course,pk=course_code)
+    students = info.student.all()
+
     return render(request,"registers/course_info.html",{
         "Course": info,
         "student":info.student.all(),
-        #"non_enrollment": Student.objects.exclude(enrollment=info),
+        "seat":students.count()
     })
 
 
@@ -31,9 +33,9 @@ def apply(request, course_code):
 
     x = get_object_or_404(Course,pk=course_code)
     if request.user not in x.student.all():
-        if Course.siting != Course.limit_seat:
+        if x.siting != x.limit_seat:
             x.student.add(request.user)
-            Course.siting += 1
+            x.siting += 1
     return HttpResponseRedirect(reverse("Register:ShowCourse",args=(course_code,)))
         
 
@@ -45,7 +47,7 @@ def removeCourse(request , course_code):
     x = get_object_or_404(Course,pk=course_code)
     if request.user in x.student.all():
         x.student.remove(request.user)
-        Course.siting -=  1
+        x.siting -=  1
     return HttpResponseRedirect(reverse("Register:ShowCourse",args=(course_code,)))
     
    
