@@ -13,17 +13,17 @@ def index(request):
 
 
 def ShowCourse(request, course_code):
-    x = get_object_or_404(Course,pk=course_code)
+    info = get_object_or_404(Course,pk=course_code)
     return render(request,"registers/course_info.html",{
-        "Course": x,
-        "student":x.enroll.all(),
-        "non_enrollment": Student.objects.exclude(enrollment=x)
+        "Course": info,
+        "student":info.enroll.all(),
+        "non_enrollment": Student.objects.exclude(enrollment=info)
     })
 
 
 def apply(request, course_code):
     if request.method == "POST":
-        x = Course.objects.filter(Course,pk=course_code)
+        x = get_object_or_404(Course,pk=course_code)
         student = request.POST["student"]
         x.enroll.add(student)
         return HttpResponseRedirect(reverse("Register:ShowCourse", args=(course_code,))

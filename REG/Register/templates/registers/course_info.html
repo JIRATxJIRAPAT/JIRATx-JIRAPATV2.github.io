@@ -25,7 +25,7 @@
         {% csrf_token %}
         <select name="student">
             {% for student in non_enrollment %}
-            <option value="{{student.student_name}}">{{student}}</option>"
+            <option value="{{student.id}}">{{student}}</option>"
             {% endfor %}
 
         </select>
