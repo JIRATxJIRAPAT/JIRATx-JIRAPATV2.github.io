@@ -3,7 +3,6 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from Register.models import Course
-
 from django.shortcuts import get_object_or_404
 
 # Create your views here.
@@ -28,13 +27,12 @@ def login_view(request):
             return HttpResponseRedirect(reverse("Users:studentinfo"))
         else:
             return render(request, "users/login.html",{
-                "message": "Invalid Credential."
+                "message": "Invalid Username or Password."
             })
     return render(request, "users/login.html")
 
 def logout_view(request):
     logout(request)
 
-    return render(request, "users/login.html",{
-        "message": "Logged out."
-    })
+    return HttpResponseRedirect(reverse("Users:login"))
+    

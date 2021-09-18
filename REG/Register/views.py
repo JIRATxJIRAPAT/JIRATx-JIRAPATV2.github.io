@@ -37,13 +37,6 @@ def apply(request, course_code):
         x.siting += 1 
     return HttpResponseRedirect(reverse("Register:ShowCourse",args=(course_code,)))
 
-"""   
-   if x.siting != x.limit_seat:
-            x.student.add(request.user)
-            x.siting += 1
-"""
-
- #return render(request, "users/studentInfo.html")
 
 def removeCourse(request , course_code):
 

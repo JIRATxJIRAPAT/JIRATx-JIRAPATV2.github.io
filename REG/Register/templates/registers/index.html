@@ -1,14 +1,53 @@
-{%extends "registers/layout.html" %}
+<!DOCTYPE html>
+<html>
 
-{% block body %}
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 
-    <h1>Course List</h1>
+    <style>
+        h1{
+            color: rgb(218, 40, 218);
+            padding: 10px,10px,10px;
+        }
+        p{
+            color: rgb(179, 65, 214);
+        }
+        h2{
+            color: rgb(121, 62, 231);
+            padding: 10px,10px,10px;
+        }
+        body {
+            background-color: #DBF9FC;
+        }
+        br{
+            background-color: rgb(199, 231, 82);
+        }
+
+    </style>
+
+
+</head>
+
+
+
+<body style="background-color: rgb(103, 209, 186);">
+
+
+    <a><h2> Course List </h2></a>
     <ul>
     {% for x in Course  %}
-        <li><a href="{% url 'Register:ShowCourse' x.course_code %}">{{ x }} </a></li>
+        <br><button><h1><a href="{% url 'Register:ShowCourse' x.course_code %}" class="btn btn-success">{{ x }} </a></h1></button><br>
     {% endfor %}
     </ul>
-    
+
     <p>{{Course.siting}}</p>
-    <a href="{% url 'Users:studentinfo' %}">Return</a>
-{% endblock body %} 
+
+</body>
+    <div class = "btn-group-vertical">
+    <a href="{% url 'Users:studentinfo' %}" class="btn btn-secondary" ><h2>Return</h2></a>
+
+
+</html>
+

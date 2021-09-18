@@ -1,12 +1,13 @@
 {% extends "Users/layout.html" %}
+<html>
 {% load static %}
 {% block body %}
 
-    <h1>Welcome, {{ request.user.first_name }}</h1>
+    <h1>Welcome, {{ request.user.username }}  </h1>
 
     <ul>
-        <li>Username: {{ request.user.username }}</li>
-        <li>Email: {{ request.user.email }}
+        <li>Username: {{ request.user.first_name }} {{request.user.last_name}}</li>
+
         
         <h3>Registered Subjects</h3>
         
@@ -15,11 +16,10 @@
             {% endfor %}
         
     </ul>
-
-    
-        
+       
     <ul>
         <p><a href="{% url 'Register:index' %}">Enrollment</a></p>
         <p><a href="{% url 'Users:logout' %}">Log out</a></p>
     </ul>
 {% endblock %}
+</html>

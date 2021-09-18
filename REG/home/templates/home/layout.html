@@ -1,10 +1,46 @@
+
+{% load static %}
 <!DOCTYPE html>
 <html>
+
     <head>
-        <title>Users</title>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js%22%3E"></script>
+        
+
+
+
+        <style>
+
+            body,html{
+            background-color: aqua;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            }
+
+
+        </style>
+
     </head>
+
+
     <body>
-        {% block body %}
-        {% endblock body %}
+
+        <h1>Course List</h1>
+
+        <ul>
+        {% for x in Course  %}
+            <li><a href="{% url 'Register:ShowCourse' x.course_code %}">{{ x }} </a></li>
+        {% endfor %}
+        </ul>
+
+        <p>{{Course.siting}}</p>
+
+        <a href="{% url 'Users:studentinfo' %}">Return</a>
+
     </body>
+
 </html>
