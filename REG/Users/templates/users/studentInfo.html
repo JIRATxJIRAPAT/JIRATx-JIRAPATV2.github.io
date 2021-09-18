@@ -1,5 +1,5 @@
 {% extends "Users/layout.html" %}
-
+{% load static %}
 {% block body %}
 
     <h1>Welcome, {{ request.user.first_name }}</h1>
@@ -15,7 +15,9 @@
             {% endfor %}
         
     </ul>
+
     
+        
     <ul>
         <p><a href="{% url 'Register:index' %}">Enrollment</a></p>
         <p><a href="{% url 'Users:logout' %}">Log out</a></p>

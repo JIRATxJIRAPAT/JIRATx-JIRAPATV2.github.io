@@ -6,7 +6,7 @@
 
     <ul>
         <li>Course : {{ Course.course_code }} {{ Course.course_name }}</li>
-        
+        <li>{{Course.status}}</li>
         <li>status: {{seat}}/{{Course.limit_seat}} seat</li>
     </ul>
     
@@ -19,9 +19,19 @@
         {% endfor %}
     </ul>
 
-
-    <p><a href="{% url 'Register:apply' Course.course_code %}">Apply course</a></h3>
-    <p><a href="{% url 'Register:remove' Course.course_code %}">Remove course</a></h3>   
+    {% if request.user not in student %}
+        {% if Course.status and seat < Course.limit_seat %}
+        <p><a href="{% url 'Register:apply' Course.course_code %}"  class="btn btn-outline-success">Apply course</a></h3>
+        {% else %}
+        <p><h1 class="btn-outline-danger"></a></h3>
+        {% endif %}
+    {% else %}
+    <h3>Already Register</h3>
+    {% endif %}
+    
+    
+    
+        <p><a href="{% url 'Register:remove' Course.course_code %}">Remove course</a></h3>   
 
 
     <br><br>

@@ -33,11 +33,17 @@ def apply(request, course_code):
 
     x = get_object_or_404(Course,pk=course_code)
     if request.user not in x.student.all():
-        if x.siting != x.limit_seat:
+        x.student.add(request.user)
+        x.siting += 1 
+    return HttpResponseRedirect(reverse("Register:ShowCourse",args=(course_code,)))
+
+"""   
+   if x.siting != x.limit_seat:
             x.student.add(request.user)
             x.siting += 1
-    return HttpResponseRedirect(reverse("Register:ShowCourse",args=(course_code,)))
-        
+"""
+
+ #return render(request, "users/studentInfo.html")
 
 def removeCourse(request , course_code):
 
