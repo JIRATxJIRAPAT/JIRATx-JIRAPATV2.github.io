@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
+
+        #parent { white-space: nowrap; }
+        .child { display: inline-block; }   
         h1{
             color: rgb(218, 40, 218);
             
@@ -21,9 +24,14 @@
             font-size: 200%;
             
         }
-        body {
-            background-color: #DBF9FC;
+        
+        body,html{
+            background-image: url("/static/images/bg-pb.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
         }
+        
         br{
             background-color: rgb(199, 231, 82);
         }
@@ -35,7 +43,7 @@
 
 
 
-<body style="background-color: rgba(175, 243, 136, 0.877);">
+<body>
     <div class="alert alert-warning" role="alert">
         Enrollment Now 19 Sep - 28 Sep 2077 !
     </div>
@@ -43,11 +51,17 @@
     <a><b> Course List </b></a>
     <ul>
     {% for x in Course  %}
-        <br><a href="{% url 'Register:ShowCourse' x.course_code %}" class="btn btn-light">{{ x }} </a><br>
-    {% endfor %}
+        <a href="{% url 'Register:ShowCourse' x.course_code %}" class="btn btn-light">{{ x }} </a>
+            
+        {% if x.status == True %}
+            <p style="text-shadow: 1px 2px 2px #FFCC00;;">Status :&#9989</p>
+            {% else %}
+            <p style="text-shadow: 1px 2px 2px #FFCC00;">Status : &#9940</p>
+        {% endif %}
+        {% endfor %}
     </ul>
 
-    <p>{{Course.siting}}</p>
+    
 
 </body>
     

@@ -1,25 +1,53 @@
-{% extends "Users/layout.html" %}
-<html>
+<!DOCTYPE html> 
 {% load static %}
-{% block body %}
-
-    <h1>Welcome, {{ request.user.username }}  </h1>
-
-    <ul>
-        <li>Username: {{ request.user.first_name }} {{request.user.last_name}}</li>
-
+<html>
+   
+    <head>
+        <title>Users</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
         
-        <h3>Registered Subjects</h3>
+        <style>
+            body,html{
+                background-image: url("/static/images/joker.jpg");
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: 100% 100%;
+            }
+            ul{
+                color: rgb(131, 207, 101);
+                margin: 10px;
+                margin-top: 2px;
+            }
+            div.foo {
+                position: absolute;
+                top: 85%;
+                left: 1%;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <h1 style="color: blueviolet;margin: 20px;">Welcome, {{ request.user.username }}  </h1>
+
+        <ul>
+            <li>Name: {{ request.user.first_name }} {{request.user.last_name}}</li>
+
+            <br>
+            
+            
+        </ul>
+        <h3 style="color:blueviolet;margin: 20px;">Registered Subjects</h3>
+            <ul>
+                {% for x in subject  %}
+                    <li>{{ x }}</li>
+                {% endfor %}
+            </ul>
+        <div class="foo">
+            <p><a href="{% url 'Register:index' %}" class="btn btn-outline-warning">Enrollment</a></p>
+            <p><a href="{% url 'Users:logout' %}" class="btn btn-outline-danger">Log out</a></p>
+        </div>
         
-            {% for x in subject  %}
-                <li>{{ x }}</li>
-            {% endfor %}
-        
-    </ul>
-       
-    <ul>
-        <p><a href="{% url 'Register:index' %}">Enrollment</a></p>
-        <p><a href="{% url 'Users:logout' %}">Log out</a></p>
-    </ul>
-{% endblock %}
+    </body>
 </html>

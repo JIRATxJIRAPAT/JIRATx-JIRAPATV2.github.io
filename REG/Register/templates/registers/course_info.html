@@ -10,25 +10,30 @@
     
         <style>
             body,html{
-                background-color: antiquewhite;
-                font-size: medium;
-                margin-left: 10px;
-                margin-top: 1%;
+            background-image: url("/static/images/bg-pb.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
             }
-            ul{
+            dl,ul{
                 color:darkblue;
                 font-size: medium;
+                margin-left:10px;
                 
             }
             h2{
                 background-color: rgb(236, 184, 234);
+                margin-left:5px;
             }
 
             div.foo {
                 position: absolute;
                 top: 85%;
                 left: 1%;
-  }
+            }
+            div.a{
+                left: 1%;
+            }
 
         </style>
     
@@ -55,19 +60,23 @@
         
         {% endif %}
         <br>
-        {% if request.user not in student %}
-            {% if Course.status and seat < Course.limit_seat %}
-            <p><a href="{% url 'Register:apply' Course.course_code %}"  class="btn btn-success">Apply course</a></h3>
+        <div class="a">
+            {% if request.user not in student %}
+                {% if Course.status and seat < Course.limit_seat %}
+                
+                    <p><a href="{% url 'Register:apply' Course.course_code %}"  class="btn btn-success">Apply course</a></h3>
+                {% else %}
+                <p><h1 class="btn-outline-danger"></a></h3>
+                
+                {% endif %}
             {% else %}
-            <p><h1 class="btn-outline-danger"></a></h3>
+            
+                <h4 style="color: rgba(64, 139, 41, 0.979);">Already Register</h4>
+                <p><a href="{% url 'Register:remove' Course.course_code %}" class="btn btn-danger">Remove course</a></h3>
+            
             {% endif %}
-        {% else %}
-        <h4 style="color: rgba(64, 139, 41, 0.979);">Already Register</h4>
-        <p><a href="{% url 'Register:remove' Course.course_code %}" class="btn btn-danger">Remove course</a></h3></div> 
-        
-        {% endif %}
 
-        
+        </div>
         <div style="bottom: auto;" class="foo" >
             <div class="btn-group-vertical">
                 <a href= "{% url 'Register:index'%}" class="btn btn-warning"> select course </a>
