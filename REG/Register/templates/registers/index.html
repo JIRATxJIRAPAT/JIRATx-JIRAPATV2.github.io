@@ -9,14 +9,17 @@
     <style>
         h1{
             color: rgb(218, 40, 218);
-            padding: 10px,10px,10px;
+            
         }
         p{
             color: rgb(179, 65, 214);
         }
-        h2{
-            color: rgb(121, 62, 231);
-            padding: 10px,10px,10px;
+        b{
+            color: rgb(4, 1, 10);
+            margin-top: 1%;
+            margin-left: 2%;
+            font-size: 200%;
+            
         }
         body {
             background-color: #DBF9FC;
@@ -32,21 +35,23 @@
 
 
 
-<body style="background-color: rgb(103, 209, 186);">
+<body style="background-color: rgba(175, 243, 136, 0.877);">
+    <div class="alert alert-warning" role="alert">
+        Enrollment Now 19 Sep - 28 Sep 2077 !
+    </div>
 
-
-    <a><h2> Course List </h2></a>
+    <a><b> Course List </b></a>
     <ul>
     {% for x in Course  %}
-        <br><button><h1><a href="{% url 'Register:ShowCourse' x.course_code %}" class="btn btn-success">{{ x }} </a></h1></button><br>
+        <br><a href="{% url 'Register:ShowCourse' x.course_code %}" class="btn btn-light">{{ x }} </a><br>
     {% endfor %}
     </ul>
 
     <p>{{Course.siting}}</p>
 
 </body>
-    <div class = "btn-group-vertical">
-    <a href="{% url 'Users:studentinfo' %}" class="btn btn-secondary" ><h2>Return</h2></a>
+    
+    <a href="{% url 'Users:studentinfo' %}" class="btn btn-secondary" style="margin-left: 2%;" ><h5>Return</h5></a>
 
 
 </html>

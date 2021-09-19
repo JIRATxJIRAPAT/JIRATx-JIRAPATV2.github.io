@@ -24,19 +24,31 @@
                 height: 100px;
                 text-align: left;
             }
+            div.tu{
+                bottom: 4%;
+                left: 10px;
+                width: 400px;
+                height: 100px;
+                position: absolute;
+            }
         </style>
     
     
     </head>
     
     <body>
-        <h1 style="text-align: center;background-color:crimson;"">Register TU</h1>
+        <h1 style="text-align: center;background-color:crimson;">Register TU</h1>
         <div class="alert alert-warning" role="alert">
             Enrollment Now 19 Sep - 28 Sep 2077 !
         </div>
 
+        <div class="tu">
+        <img src="{%static 'images/tulong.png'%}" alt="...">
+        </div>
+        
         <p style="text-align: center;"><a href="{% url 'Users:login' %}" class="btn btn-success">Log in</a></p>
 
+        
         <figure class="motto">
             <blockquote class="blockquote">
               <p> The greatest lesson I have learn in school is that I have learn nothing. </p>
@@ -48,5 +60,7 @@
     </body>
 
 
-
+    
 </html>
+
+
