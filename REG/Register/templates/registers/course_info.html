@@ -33,50 +33,55 @@
             }
             div.a{
                 left: 1%;
+                margin-left: 15px;
             }
 
         </style>
     
     </head>
     <body>
-        <h2>Course: {{ Course.course_code }}</h2>
+        <h2> &#128214 Course: {{ Course.course_code }}</h2>
         <br>
         <dl>
-            <dd>Course: {{ Course.course_name }}</dd>
+            <dd>Course Name: {{ Course.course_name }}</dd>
             <dd>Open:{{Course.status}}</dd>
-            <dd>status: {{seat}}/{{Course.limit_seat}} seat</dd>
+            <dd>status: {{seat}}/{{Course.limit_seat}} seats</dd>
         </dl>
         
         {% if request.user.is_superuser %}
         <br>
-        <h2>student</h2>
+        <h2>&#128587 Students</h2>
         <ul>
             {% for y in student %}
-            <li>{{ y.username }}</li>
+            <li>{{ y.first_name }} {{y.last_name}}</li>
             {% empty %}
             <li>No Student</li>
             {% endfor %}
         </ul>
         
-        {% endif %}
-        <br>
-        <div class="a">
-            {% if request.user not in student %}
-                {% if Course.status and seat < Course.limit_seat %}
-                
-                    <p><a href="{% url 'Register:apply' Course.course_code %}"  class="btn btn-success">Apply course</a></h3>
+        {% else %}
+        
+            <br>
+            <div class="a">
+                {% if request.user not in student %}
+                    {% if Course.status and seat < Course.limit_seat %}
+                    
+                        <p><a href="{% url 'Register:apply' Course.course_code %}"  class="btn btn-success">Apply course &#128221</a></h3>
+                    {% else %}
+                        {% if Course.status == False %}
+                            <p><h4 style="color:crimson;">Closed &#9203</a></h4>
+                        {% else %}
+                            <p><h4 style="color:crimson;">seat full &#128560</a></h4>
+                        {% endif %}        
+                    {% endif %}
                 {% else %}
-                <p><h1 class="btn-outline-danger"></a></h3>
+                
+                    <h4 style="color: rgba(64, 139, 41, 0.979);">Already Register</h4>
+                    <p><a href="{% url 'Register:remove' Course.course_code %}" class="btn btn-danger">&#9888 Remove course &#9888</a></h3>
                 
                 {% endif %}
-            {% else %}
-            
-                <h4 style="color: rgba(64, 139, 41, 0.979);">Already Register</h4>
-                <p><a href="{% url 'Register:remove' Course.course_code %}" class="btn btn-danger">Remove course</a></h3>
-            
             {% endif %}
-
-        </div>
+            </div>
         <div style="bottom: auto;" class="foo" >
             <div class="btn-group-vertical">
                 <a href= "{% url 'Register:index'%}" class="btn btn-warning"> select course </a>

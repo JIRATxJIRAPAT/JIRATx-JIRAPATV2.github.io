@@ -45,11 +45,12 @@
 
 <body>
     <div class="alert alert-warning" role="alert">
-        Enrollment Now 19 Sep - 28 Sep 2077 !
+        &#128227 Enrollment Now 19 Sep - 28 Sep 2077 !
     </div>
 
-    <a><b> Course List </b></a>
-    <ul>
+    <p style="text-align: center;"><b> &#10084 &#128153 &#128154 Course List &#128155 &#129505 &#128156</b></p>
+    <br>   
+    <ul style="text-align: center;">
     {% for x in Course  %}
         <a href="{% url 'Register:ShowCourse' x.course_code %}" class="btn btn-light">{{ x }} </a>
             
@@ -65,7 +66,7 @@
 
 </body>
     
-    <a href="{% url 'Users:studentinfo' %}" class="btn btn-secondary" style="margin-left: 2%;" ><h5>Return</h5></a>
+    <a href="{% url 'Users:studentinfo' %}" class="btn btn-dark" style="margin-left: 1%;margin-bottom: 5px;" ><h5>&#9194 Return </h5></a>
 
 
 </html>

@@ -29,23 +29,28 @@
     </head>
     
     <body>
-        <h1 style="color: blueviolet;margin: 20px;">Welcome, {{ request.user.username }}  </h1>
+        <h1 style="color: blueviolet;margin: 20px;"> Welcome, {{ request.user.username }} &#128075 </h1>
 
         <ul>
             <li>Name: {{ request.user.first_name }} {{request.user.last_name}}</li>
-
+            <li>Email: {{request.user.email}} </li>
             <br>
             
-            
+           
         </ul>
-        <h3 style="color:blueviolet;margin: 20px;">Registered Subjects</h3>
+
+        {% if request.user.is_superuser %}
+        {% else %}
+
+            <h3 style="color:blueviolet;margin: 20px;">&#128218 Registered Subjects</h3>
             <ul>
                 {% for x in subject  %}
                     <li>{{ x }}</li>
                 {% endfor %}
             </ul>
+        {% endif %}
         <div class="foo">
-            <p><a href="{% url 'Register:index' %}" class="btn btn-outline-warning">Enrollment</a></p>
+            <p><a href="{% url 'Register:index' %}" class="btn btn-outline-warning">Enrollment &#128221</a></p>
             <p><a href="{% url 'Users:logout' %}" class="btn btn-outline-danger">Log out</a></p>
         </div>
         
