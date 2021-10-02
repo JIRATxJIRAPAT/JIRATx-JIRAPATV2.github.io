@@ -32,7 +32,7 @@ def apply(request, course_code):
         return HttpResponseRedirect(reverse("Users:login"))
 
     x = get_object_or_404(Course,pk=course_code)
-    if request.user not in x.student.all():
+    if request.user not in x.student.all() and x.is_seat_available():
         x.student.add(request.user)
         x.siting += 1 
     return HttpResponseRedirect(reverse("Register:ShowCourse",args=(course_code,)))
@@ -49,4 +49,3 @@ def removeCourse(request , course_code):
         x.siting -=  1
     return HttpResponseRedirect(reverse("Register:ShowCourse",args=(course_code,)))
     
-   
